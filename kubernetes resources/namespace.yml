@@ -1,0 +1,49 @@
+#kubernetes create 3 namespace=
+# 1. kubesystem=fpr users are created
+# 2.default=for our work
+# 3. kube-public=for dns , networking
+
+# DNS name of default namespace for other namespace=<podname>.dev.svc.cluster.local
+
+# -->kubectl get pods --namespace=kube-system
+##set dev enviourmnet permanently=kubectl config set-context $(kubectl config current-context) --namespace=dev
+#see all the namesoace pod=kubectl get pods --all-namespace
+
+# there are following way to create pod in diffrent namespace
+#1. in metadata
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp
+  namespace: dev
+  labels:
+    app: myapp
+spec:
+  containers:
+  - name: myapp
+    image: nginx
+
+#in kind
+apiVersion: v1
+kind: Namespace
+metadata: 
+  name: dev
+
+##to limit resource we create resource quota
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: compute-quota
+  namespace: dev
+spec:
+  hard:
+    pods: "10"
+    requests.cpu: "4"
+    requests.memory: "5Gi"
+    limits.cpu: "10"
+    limits.memory: 10GI
+
+##-->kubectl run redis --image=redis --n=finance
+##-->kubectl get pods --all-namespaces=kubectl get pods -A=give all namespace pods
+
+##kubectl run nginx --image=nginx --dry-run=client -o yaml > nginx-pod.yaml

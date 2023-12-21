@@ -1,0 +1,22 @@
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: myapp-npa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/vl
+    kind: Deployment
+    name: myapp
+  minReplicas: 1  
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+    name: cpu
+    target:
+       type: Utlization
+       averageUtilization: 50
+
+#-->kubectl create -f horizontal_pod_scaller.yaml
+#-->kubectl get hpa
+#-->kubectl delete hpa myapp-hpa

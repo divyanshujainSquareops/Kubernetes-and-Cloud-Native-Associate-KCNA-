@@ -1,0 +1,14 @@
+Q1.What is one way to manually assign a node to an existing pod in Kubernetes by mimicking the behavior of the scheduler?
+A1.creating a binding object with the target node name and send a post request to the pod`s binding API.
+
+Q2.What is the key distinction between a DaemonSet and a ReplicaSet?
+A2.
+
+Q3.In Kubernetes, what mechanism allows you to filter and view different objects based on categories or criteria, such as their type, application, or functionality?
+A3.Labels And Selectors
+
+Q4.How can you limit a pod to run on a specific node in Kubernetes?
+A4.use labels to the node and use nodeSlector in the pod
+
+Q5.What does the taint effect determine for pods that do not tolerate the taint in Kubernetes?
+A5.The scheduling behaviour of the pods

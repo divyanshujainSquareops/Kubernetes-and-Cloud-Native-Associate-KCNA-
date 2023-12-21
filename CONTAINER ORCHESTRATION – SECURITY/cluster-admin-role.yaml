@@ -1,0 +1,11 @@
+apiVersion: rbac.authorization.k8s.io/vl
+kind: ClusterRole
+metadata:
+  name: cluster-administrator
+rules:
+  - apiGroups: [""]
+    resources: ["nodes"]
+    verbs: ["list", "get", "create", "delete"]
+
+#kubectl create -f cluster-admin-role.yaml
+#binding the role=cluster-admin-role-binding.yaml

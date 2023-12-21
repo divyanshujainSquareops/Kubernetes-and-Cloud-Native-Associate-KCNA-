@@ -1,0 +1,27 @@
+apiVersion: vl
+kind: PersistentVolume
+metadata:
+  name: pv-voll
+spec:
+  accessModes :
+  - ReadWriteOnce
+  capacity:
+    storage: 1Gi
+  hostPath:
+    path: /tmp/data
+
+#-->kubectl create -f pv-defination.yaml
+#-->kubectl get persistentvolume
+# accessModes=ReadWriteOnce,ReadOnlyMany,ReadWriteMany
+
+# we can add aws block storage by replace hostpath with  awsElasticBlockstore
+# awsElasticBlockstore:
+#     volumeID: <volume-id>
+#     fsType: ext4
+
+# we can add gcloud compute disk by replace hostpath with  gcePersistentDisk.
+# gcePersistentDisk:
+#     pdName: pd-disk
+#     fsType: ext4
+
+

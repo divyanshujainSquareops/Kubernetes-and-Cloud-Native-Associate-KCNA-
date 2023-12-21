@@ -1,0 +1,15 @@
+apiVersion: rbac.authorization.k8s.io/vl
+kind: Role
+metadata:
+  name: developer
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["list", "get", "create", "update", "delete"]
+  resourceNames: ["blue","oragene"]#pod name
+- apiGroups: [""]
+  resources: ["ConfigMap"]
+  verbs: ["create"]
+
+#-->kubectl create -f developer.yml
+#next step is bind the user with rule =devuser-developer-binding.yaml

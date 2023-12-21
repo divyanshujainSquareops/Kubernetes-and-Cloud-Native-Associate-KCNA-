@@ -1,0 +1,36 @@
+global:
+  scrape_interval: 1m
+  scrape_timeout: 10s
+
+######## ex 1
+scrape_configs:
+  - job name:  "node"
+    scrape_Interval: 15s
+    scrape_timeout: 5s
+    sample limit: 1000
+    static_configs:- targets: ['172.16.12.1:9090']
+# Configuration related to AlertManager
+alerting:
+# Rule files specifies a list of files rules are read from
+rule_files:
+# Settings related to the remote read/write feature.
+remote_read:
+remote write:
+# Storage releted setting
+storage:
+
+
+########### ex2
+# scrape_configs:
+#   - job name:  "node"
+#     scrape_Interval: 15s
+#     scrape_timeout: 5s
+#     scheme: https
+#     metrics_path: /stats/metrics
+#     static_configs:
+#       - targets: ['172.16.12.1:9090','172.16.12.1:9090']
+
+# after changes in promethus config file you have restart promethus
+# ctrl+c --> ./promethus
+# or
+# systemctl restart promethus

@@ -1,0 +1,32 @@
+#RelicaSet=it manage that were not created as part of the replica set creation
+apiVersion: v1
+kind: ReplicaSet
+metadata:
+  name: app-replicaset
+  labels:
+    app: myapp
+    type: front-end
+spec:
+  template:
+   
+    metadata:
+      name: myapp-pod
+      labels:
+        app: myapp
+        country: IN
+    spec:
+      containers: 
+        - name: mginx-container
+          image: httpd
+  replicas: 3
+  selector: 
+    matchLabels:
+      type: front-end
+
+#kubectl get replicaset
+
+#scale the replica set
+#1. edit the number of replicas in yml file, then run
+    # kubectl replace -f replicaset.yml
+#2. kubectl scale --replicas=6 -f replicaset.yml
+#3. kubectl scale --replicas=6 <type> <name>=kubectl scale --replicas=6 replicaset myapp-replicaset

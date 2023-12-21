@@ -1,0 +1,23 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: google-storage
+provisioner: kubernetes.i0/gce-pd
+parameters:
+  type: pd-standard #or pd-ssd
+  replication-type: none #or 
+
+#storage class perameter have 3 types
+# 1. silver SC=
+#   parameters:
+#     type: pd-standard
+#     replication-type: none 
+
+# 2. GOLD SC=
+#   parameters:
+#     type: pd-ssd
+#     replication-type: none 
+# 3. Platinum SC
+#   parameters:
+#     type: pd-ssd
+#     replication-type: regional-pd 

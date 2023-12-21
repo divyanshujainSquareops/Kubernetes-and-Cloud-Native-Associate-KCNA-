@@ -1,0 +1,32 @@
+#there is no big diffrence b/w deployment and replicaset
+#rolling update=update changes one by one by pod
+#rolling-back=update back changes one by one pod
+#deployment=when you want that update change doesnot affect infrastrucutre immediately then you use deployment bcz it use rolling algo. basically you want update using rolling update,undo changes, pause and resume changes are required.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+  labels:
+    app: myapp
+    type: front-end
+spec:
+  template:
+   
+    metadata:
+      name: myapp-pod
+      labels:
+        app: myapp
+        country: IN
+    spec:
+      containers: 
+        - name: mginx-container
+          image: httpd
+  replicas: 3
+  selector: 
+    matchLabels:
+      type: front-end
+
+#kubectl create -f deployment.yml
+#kubectl get deployment
+#kubectl get replicaset
+#kubectl get pods

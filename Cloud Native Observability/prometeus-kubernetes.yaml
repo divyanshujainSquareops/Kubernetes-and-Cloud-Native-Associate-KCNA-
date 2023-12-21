@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  annotations:
+    meta.helm.sh/release-name: prometheus
+    meta.helm.sh/release-namespace: default
+  creationTimestamp: "2022-11-18T01:19:297"
+  generation: 1
+  labels:
+    app: kube-prometheus-stack-prometheus
+  name: prometheus-kube-prometheus-prometheus
+spec:
+  alerting:
+    alertmanagers:
+    - apiVersion: v2
+      name: prometheus-kube-prometheus-alertmanager
+      namespace: default
+      port: http-web

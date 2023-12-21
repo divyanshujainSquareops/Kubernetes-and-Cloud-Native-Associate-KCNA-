@@ -1,0 +1,32 @@
+apiVersion: vl
+kind: Config
+current-context: dev-user@google
+clusters:
+- name: my-kube-playground
+  cluster:
+    # certificate-authority: ca.crt (better to use full path)
+    certificate-authority: convert-data-into-base64
+    server: https://my-kube-playground:6443
+    namespace: namespace-name
+- name: devlopment
+- name: production
+contexts:
+- name: my-kube-admin@my-kube-playground
+  context:
+    cluster: my-kube-playground
+    user: my-kube-admin
+- name: dev-user@google
+- name: admin@production
+
+users:
+- name: my-kube-admin
+  users:
+    client-certificate: admin.crt
+    client-key: admin.key
+- name: admin
+- name: dev-user
+
+#-->kubectl confign view --kubeconfig=my-custom-config
+#-->kubectl config use-context prod-user@production
+#convert ca.crt into base64 encode=cat ca.crt | base64=>"Ls..nJ"
+#decode the code=-->echo "Ls..nJ" | base64 --decode

@@ -1,0 +1,5 @@
+kind: ConfigMap
+apiVersion: vl
+metadata :
+name: nginx-configuration
+

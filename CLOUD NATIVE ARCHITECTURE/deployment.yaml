@@ -1,0 +1,22 @@
+apiVersion: apps/vl
+kind: Deployment
+metadata:
+  name: myapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp  
+    spec:
+      containers:
+      - name: myapp
+        image: myapp:latest
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 200m

@@ -1,0 +1,21 @@
+apiVersion: kubescheduler.config.k8s.io/v1
+kind: kubeSchedulerConfiguration
+profiles:
+- schedulerName: my-scheduler-2
+  plugins:
+    score:
+      disabled:
+       - name: TaintToleration
+#TaintToleration plugin is diables in my-scheduler-2 pods
+      enabled:
+        - name: MyCustomPluginA
+        - name: MyCustomPluginB
+#MyCustomPluginA,MyCustomPluginB plugin is enables in my-scheduler-2 pods
+
+  
+- schedulerName: my-scheduler-3
+- schedulerName: my-scheduler-4 
+leaderElection:
+  leaderElect: true
+  resourceNamespace: kube-system
+  resourceName: lock-object-my-scheduler

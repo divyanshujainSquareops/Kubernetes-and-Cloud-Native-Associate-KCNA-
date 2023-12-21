@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: myclaim
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500Mi
+
+#kubectl create -f persistent-volume-claim.yaml
+#kubectl get persistentvolumeclaim
+#delete pvc=-->kubectl delete persistentvolumeclaim myclaim
+
+#what is we have to save volume
+#persistentVolumeReclaimPolicy: Retain (bydefault)
+#persistentVolumeReclaimPolicy: Delete (if volume deleted claim will be deleted)
+#persistentVolumeReclaimPolicy: Recycle (the data in the data volume will be scrubbed before making it avaialable to other claims)

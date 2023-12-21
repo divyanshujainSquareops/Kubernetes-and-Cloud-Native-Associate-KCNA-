@@ -1,0 +1,17 @@
+apiVersion: "autoscaling.k8s.io/v1"
+kind: VerticalPodAutoscaler
+metadata:
+    name: webapp-vpa
+spec:
+  targetRef:
+    apiVersion: "v1"
+    kind: Pod
+    name: simple-webapp-color
+  updatePolicy:
+    updateMode: "Off"
+#-->kubectl create -f vertical_pod_autoscaller.yaml
+#-->kubectl describe vpa webapp-vpa
+# update mode=
+# 1. Off = updatePolicy mode off
+# 2. intial= this mode allows the vpa to autmatically update the resources request of pod, but only when they are first created.
+# 3. auto= this mode allows the vpa to automatically update the resources request of pod throughout their life cycle.

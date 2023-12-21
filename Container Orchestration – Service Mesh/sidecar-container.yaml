@@ -1,0 +1,11 @@
+containers:
+  - name: nginx-container
+    image: nginx
+    volumeMounts:
+    - name: shared-data
+      mountPath: /usr/share/nginx/html
+    - name: sidecar-container
+      image: fluent/fluentd
+      volumeMounts:
+      - name: shared-data
+        mountPath: /pod-data
